@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, Text, TextInput, Button, FlatList, StyleSheet } from 'react-native';
+import SaveButton from './components/SaveButton'; // PART 1: already imported for you
 
 const API_URL = 'http://localhost:3000';
 
@@ -16,6 +17,24 @@ export default function App() {
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
   const [capacity, setCapacity] = useState('');
+
+  // ===============================================================
+  // PART 1: SAVED EVENTS (the freelancer started this and didn't finish)
+  // The client wants people to be able to save events they're interested in.
+  // Do STEP 1 in components/SaveButton.js first, then STEPS 2-4 in this file.
+  // ===============================================================
+
+  // STEP 2: Add a piece of state that remembers which events are saved.
+  //   - Name it savedIds and start it as an empty array.
+  //   - Use useState, just like the state variables above.
+  //   - Hint: const [savedIds, setSavedIds] = useState([]);
+
+  // STEP 3: Write a function called toggleSaved(id) that saves or un-saves an event.
+  //   - If id is already in savedIds, remove it.
+  //       Hint: savedIds.filter((savedId) => savedId !== id)
+  //   - Otherwise, add it.
+  //       Hint: [...savedIds, id]
+  //   - Pass the new array to setSavedIds.
 
   const loadEvents = () => {
     fetch(`${API_URL}/events`)
@@ -63,6 +82,13 @@ export default function App() {
             <Text>{formatDate(item.date)}</Text>
             <Text>{item.rsvpCount}/{item.capacity} going</Text>
             <Button title="RSVP" onPress={() => rsvp(item.id)} />
+            {/* STEP 4: Render <SaveButton /> here, under the RSVP button.
+                Pass it three props:
+                  eventId={item.id}
+                  saved={savedIds.includes(item.id)}
+                  onToggle={toggleSaved}
+                When you're done, tapping Save should change the button to
+                "Saved", and tapping it again should change it back. */}
           </View>
         )}
       />

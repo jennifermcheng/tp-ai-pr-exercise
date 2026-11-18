@@ -12,3 +12,9 @@ A campus event board: browse events, RSVP, and add new events.
 - RSVP to events (with capacity limits)
 - Create events
 - Cancel an RSVP
+- Save events (in progress, see below)
+
+## Not finished yet
+The client also wants people to be able to **save events** they're interested in.
+I started on it (`app/components/SaveButton.js` and a few TODO comments in `app/App.js`)
+but didn't get to finish. The comments in those files explain what's left.
